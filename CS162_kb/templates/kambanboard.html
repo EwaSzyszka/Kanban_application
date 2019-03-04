@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{%block body %}
+<br></br>
+
+  <div class="jumbotron text-center">
+    <h1>Welcome to the KanbanApp</h1>
+    <p class='lead'>Organize your tasks now!</p>
+  </div>
+
+  <div align="center">
+    <form action='/add' method='POST'>
+      <input type='text' name='task' required placeholder="Add a new task to do">
+      <button>Add Item</button>
+    </form>
+  </div>
+
+
+
+  <div align="center" class="row">
+    <div class="column" style="background-color:#f47641;">
+      <h2>To do</h2>
+        <ul>
+          {% for task in to_do %}
+          <li>{{ task.task }}</li>
+          <li>
+              <button><a href="{{ url_for('change_status', id=task.id, status='doing') }}">Mark as doing</a></button>
+              <button><a href="{{ url_for('change_status', id=task.id, status='done') }}">Mark as done</a></button>
+              <button><a href="{{ url_for('delete', id=task.id) }}">Delete task</a></button></li>
+          {% endfor %}
+        </ul>
+    </div>
+
+
+
+
+
+
+
+        <form action="/action_page.php" method="get">
+        <input type="checkbox"  > Civic project<br>
+        </form>
+
+        <form action="/my-handling-form-page" method="post">
+          <div>
+            <label for="msg">Note:</label>
+            <div>
+            <textarea id="msg" name="user_message"></textarea>
+            </div>
+          </div>
+        </form>
+
+
+    </div>
+    <div class="column" style="background-color:#f4d941;">
+      <h2>In progress</h2>
+      <form action="/action_page.php" method="get">
+        <input type="checkbox" > learn Spanish<br>
+      </form>
+      <form action="/action_page.php" method="get">
+      <input type="checkbox"  > read a book<br>
+      </form>
+      <form action="/my-handling-form-page" method="post">
+        <div>
+          <label for="msg">Note:</label>
+          <div>
+          <textarea id="msg" name="user_message"></textarea>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+
+    <div class="column" style="background-color:#a1f442;">
+      <h2>Done</h2>
+      <form action="/action_page.php" method="get">
+        <input type="checkbox"  checked> wake up<br>
+      </form>
+      <form action="/action_page.php" method="get">
+      <input type="checkbox" checked> don't oversleep<br>
+      </form>
+      <form action="/my-handling-form-page" method="post">
+        <div>
+          <label for="msg">Note:</label>
+          <div>
+          <textarea id="msg" name="user_message"></textarea>
+          </div>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+
+{%endblock%}
